@@ -12,6 +12,10 @@ public class Account implements Comparable<Account>, Cloneable {
 
 	@Override
 	public boolean equals(Object o) {
+
+		// assertTEST
+		// assert !(o instanceof Account) : "テスト";
+
 		// this == 自分自身が引数
 		if (o == this)
 			return true;

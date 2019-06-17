@@ -10,7 +10,8 @@ package com.sukkiri.test6;
 public class DBSample {
 
 	/**
-	 * @param args
+	 * ValueOf メソッドの説明
+	 * @param args 
 	 */
 	public static void main(String[] args) {
 		DBDAO db = new DBDAO();
