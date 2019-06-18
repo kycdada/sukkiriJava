@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FuncList.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BankTest (2019/06/18 9:35:52)</a> &gt; <a href="../../index.html" class="el_group">Test</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">com.sukkiri.test3</a> &gt; <span class="el_source">FuncList.java</span></div><h1>FuncList.java</h1><pre class="source lang-java linenums">/**
+ *
+ */
+package com.sukkiri.test3;
+
+/**
+ * @author user2
+ *
+ */
+<span class="nc" id="L10">public class FuncList {</span>
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L16">		Func1 func1 = FuncList::isOdd;</span>
+<span class="nc" id="L17">		FuncList funcList = new FuncList();</span>
+<span class="nc" id="L18">		Func2 func2 = funcList::addNamePrefix;</span>
+<span class="nc" id="L19">		System.out.println(func1.call(2));</span>
+<span class="nc" id="L20">		System.out.println(func2.call(false, &quot;Yes&quot;));</span>
+
+<span class="nc" id="L22">		func1 = (int x) -&gt; {</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">			return (x % 2 == 1);</span>
+		};
+<span class="nc" id="L25">		func2 = (boolean male, String name) -&gt; {</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">			if (male == true) {</span>
+<span class="nc" id="L27">				return &quot;Mr.&quot; + name;</span>
+			} else {
+<span class="nc" id="L29">				return &quot;Ms.&quot; + name;</span>
+			}
+		};
+<span class="nc" id="L32">		System.out.println(func1.call(5));</span>
+<span class="nc" id="L33">		System.out.println(func2.call(true, &quot;No&quot;));</span>
+
+<span class="nc" id="L35">	}</span>
+
+	public static boolean isOdd(int x) {
+<span class="nc bnc" id="L38" title="All 2 branches missed.">		return (x % 2 == 1);</span>
+	}
+
+	public String addNamePrefix(boolean male, String name) {
+<span class="nc bnc" id="L42" title="All 2 branches missed.">		if (male == true) {</span>
+<span class="nc" id="L43">			return &quot;Mr.&quot; + name;</span>
+		} else {
+<span class="nc" id="L45">			return &quot;Ms.&quot; + name;</span>
+		}
+	}
+
+	public interface Func1 {
+		public abstract boolean call(int x);
+	}
+
+	public interface Func2 {
+		public abstract String call(boolean male, String name);
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>BankTest (2019/06/18 9:35:52)</div></body></html>

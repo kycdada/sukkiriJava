@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DT.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BankTest (2019/06/18 9:35:52)</a> &gt; <a href="../../index.html" class="el_group">Test</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">com.sukkiri.test</a> &gt; <span class="el_source">DT.java</span></div><h1>DT.java</h1><pre class="source lang-java linenums">/**
+ *
+ */
+package com.sukkiri.test;
+
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ * @author user2
+ *
+ */
+<span class="nc" id="L21">public class DT {</span>
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// 旧API
+<span class="nc" id="L28">		Date now = new Date();</span>
+<span class="nc" id="L29">		System.out.println(now);</span>
+<span class="nc" id="L30">		System.out.println(now.getTime());</span>
+<span class="nc" id="L31">		Date past = new Date(131662222595L);</span>
+<span class="nc" id="L32">		System.out.println(past);</span>
+
+		// 新API
+		// 現在時刻を取得
+<span class="nc" id="L36">		Instant i = Instant.now();</span>
+
+		// Instantとlong値の相互変換
+<span class="nc" id="L39">		Instant i2 = Instant.ofEpochMilli(31920291332L);</span>
+<span class="nc" id="L40">		long l = i2.toEpochMilli();</span>
+
+		// ZoneDateTimeの生成
+<span class="nc" id="L43">		ZonedDateTime z1 = ZonedDateTime.now(); // 現在日次を取得</span>
+<span class="nc" id="L44">		ZonedDateTime z2 = ZonedDateTime.of(2014, 1, 2, 3, 4, 5, 6, ZoneId.of(&quot;Asia/Tokyo&quot;)); // 東京時間、2014年1月2日3時4分5秒6ナノ秒を指定して取得</span>
+
+		// InstantとZonedDateTimeの相変換
+<span class="nc" id="L47">		Instant i3 = z2.toInstant();</span>
+<span class="nc" id="L48">		ZonedDateTime z3 = i3.atZone(ZoneId.of(&quot;Europe/London&quot;));</span>
+
+		// ZonedDateTimeの利用
+<span class="nc" id="L51">		System.out.println(&quot;東京&quot; + z2.getYear() + z2.getMonth() + z2.getDayOfMonth());</span>
+<span class="nc" id="L52">		System.out.println(&quot;ロンドン&quot; + z3.getYear() + z3.getMonth() + z3.getDayOfMonth());</span>
+
+		// 同じ瞬間の判定にはisEqualを使う
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		if (z2.isEqual(z3)) {</span>
+<span class="nc" id="L56">			System.out.println(&quot;これらは同じ時間を指しています&quot;);</span>
+		}
+
+		// localDatetime 私たち普段使うようなタイムゾーンを考慮しない時間
+<span class="nc" id="L60">		LocalDateTime l1 = LocalDateTime.now(); // 現在日次を指定</span>
+<span class="nc" id="L61">		LocalDateTime l2 = LocalDateTime.of(2014, 1, 1, 9, 5, 0, 0); // 2014年1月1日9時5分0秒0ナノ秒を指定して取得</span>
+
+		// localDateTimeとZonedDateTimeの相互変換
+<span class="nc" id="L64">		ZonedDateTime z4 = l2.atZone(ZoneId.of(&quot;Europe/London&quot;));</span>
+<span class="nc" id="L65">		System.out.println(z4);</span>
+<span class="nc" id="L66">		LocalDateTime l3 = z4.toLocalDateTime();</span>
+<span class="nc" id="L67">		System.out.println(l3);</span>
+
+		// 文字列からLocalDateを生成
+<span class="nc" id="L70">		DateTimeFormatter f = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd&quot;);</span>
+<span class="nc" id="L71">		LocalDate d = LocalDate.parse(&quot;2011/08/21&quot;, f);</span>
+
+		// 千日後を計算する
+<span class="nc" id="L74">		d = d.plusDays(1000);</span>
+<span class="nc" id="L75">		String str = d.format(f);</span>
+<span class="nc" id="L76">		System.out.println(&quot;1000日後は&quot; + str);</span>
+
+		// 現在時刻との比較
+<span class="nc" id="L79">		LocalDate now2 = LocalDate.now();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">		if (now2.isAfter(d)) {</span>
+<span class="nc" id="L81">			System.out.println(&quot;now2はdより新しい&quot;);</span>
+		}
+
+		// 日数ベースで期間管Period [時間・分・秒]で収まる期間Duration
+<span class="nc" id="L85">		LocalDate d1 = LocalDate.of(2014, 11, 1);</span>
+<span class="nc" id="L86">		LocalDate d2 = LocalDate.of(2014, 11, 4);</span>
+
+		// 3日間を表すPeriodを2通りの方法で生成
+<span class="nc" id="L89">		Period p1 = Period.ofDays(3);</span>
+<span class="nc" id="L90">		Period p2 = Period.between(d1, d2);</span>
+
+		// d2のさらに三日後を計算する
+<span class="nc" id="L93">		LocalDate d3 = d2.plus(p2);</span>
+<span class="nc" id="L94">		System.out.println(d3);</span>
+
+<span class="nc" id="L96">		DTTest dtTest = new DTTest();</span>
+<span class="nc" id="L97">		dtTest.test1();</span>
+<span class="nc" id="L98">		dtTest.test2();</span>
+<span class="nc" id="L99">	}</span>
+}
+
+<span class="nc" id="L102">class DTTest {</span>
+	void test1() {
+		// 現在時刻をDate型で取得
+<span class="nc" id="L105">		Date now = new Date();</span>
+<span class="nc" id="L106">		Calendar cal = Calendar.getInstance();</span>
+		// 取得した日時情報をCalendarにセット
+<span class="nc" id="L108">		cal.setTime(now);</span>
+		// Calendarから日の情報を取得
+<span class="nc" id="L110">		int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);</span>
+		// 100足してcalendarインスタンスに入れる
+<span class="nc" id="L112">		cal.set(Calendar.DAY_OF_MONTH, dayOfMonth + 100);</span>
+		//
+<span class="nc" id="L114">		Date time = cal.getTime();</span>
+<span class="nc" id="L115">		SimpleDateFormat sf = new SimpleDateFormat(&quot;yyyy/MM/dd&quot;);</span>
+<span class="nc" id="L116">		System.out.println(sf.format(time));</span>
+<span class="nc" id="L117">	}</span>
+
+	void test2() {
+<span class="nc" id="L120">		LocalDate now = LocalDate.now();</span>
+<span class="nc" id="L121">		LocalDate future = now.plusDays(100);</span>
+<span class="nc" id="L122">		DateTimeFormatter f = DateTimeFormatter.ofPattern(&quot;西暦yyyy年MM月dd日&quot;);</span>
+<span class="nc" id="L123">		System.out.println(future.format(f));</span>
+<span class="nc" id="L124">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>BankTest (2019/06/18 9:35:52)</div></body></html>

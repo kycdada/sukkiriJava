@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RefSample.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BankTest (2019/06/18 9:35:52)</a> &gt; <a href="../../index.html" class="el_group">Test</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">com.sukkiri.test4</a> &gt; <span class="el_source">RefSample.java</span></div><h1>RefSample.java</h1><pre class="source lang-java linenums">/**
+ *
+ */
+package com.sukkiri.test4;
+
+/**
+ * @author user2
+ *
+ */
+<span class="nc" id="L10">public class RefSample {</span>
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// リフレクションAPIを用いた型情報の取得
+<span class="nc" id="L17">		Class&lt;?&gt; infos = String.class;</span>
+<span class="nc" id="L18">		System.out.println(infos.getSimpleName());</span>
+<span class="nc" id="L19">		System.out.println(infos.getName());</span>
+<span class="nc" id="L20">		System.out.println(infos.getPackage().getName());</span>
+<span class="nc" id="L21">		System.out.println(infos.isArray());</span>
+
+		// 親クラス
+<span class="nc" id="L24">		Class&lt;?&gt; infosp = infos.getSuperclass();</span>
+<span class="nc" id="L25">		System.out.println(infosp.getName());</span>
+
+		// argは文字配列として判断される
+<span class="nc" id="L28">		Class&lt;? extends String[]&gt; infoArg = args.getClass();</span>
+<span class="nc" id="L29">		System.out.println(infoArg.getName());</span>
+<span class="nc" id="L30">		System.out.println(infoArg.isArray());</span>
+
+<span class="nc" id="L32">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>BankTest (2019/06/18 9:35:52)</div></body></html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Hero.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BankTest (2019/06/18 9:35:52)</a> &gt; <a href="../../index.html" class="el_group">Test</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">com.sukkiri.test2</a> &gt; <span class="el_source">Hero.java</span></div><h1>Hero.java</h1><pre class="source lang-java linenums">/**
+ *
+ */
+package com.sukkiri.test2;
+
+/**
+ * @author user2
+ *
+ */
+<span class="nc" id="L10">public class Hero implements Cloneable {</span>
+	private String name;
+	private int hp, mp;
+	Account account;
+
+	// 新たにクラスを作成したら、親クラス（objectのtoString 及び equals 及び hashCode）をオーバーライドして上げる。
+	// 親クラスの方のmethodが優先されて、想定道理に動かない可能性があるため
+
+	// overrideしていなかった場合に、コンパイルエラーが出るアノテーション
+	@Override
+	public String toString() {
+<span class="nc" id="L21">		return &quot;勇者(名前)=&quot; + this.name + &quot;/HP&quot; + this.hp + &quot;/MP=&quot; + this.mp + &quot;)&quot;;</span>
+	}
+
+	// cloneを可能にするために、interface追加しcloneメソッド作成
+	// Cloneableはメソッドを一つも所持していない（アノテーション@overrideはつかえない?）
+	// こういうのをmarker Interface
+	public Hero clone() {
+<span class="nc" id="L28">		Hero result = new Hero();</span>
+<span class="nc" id="L29">		result.name = this.name;</span>
+<span class="nc" id="L30">		result.hp = this.hp;</span>
+<span class="nc" id="L31">		result.mp = this.mp;</span>
+		// 浅いコピー（参照先は変わっていない）
+<span class="nc" id="L33">		result.account = this.account;</span>
+		// 深いコピー（参照先が変わる）
+<span class="nc" id="L35">		result.account = this.account.clone();</span>
+
+<span class="nc" id="L37">		return result;</span>
+	}
+
+	public int getHp() {
+<span class="nc" id="L41">		return this.hp;</span>
+	}
+
+	public void setHp(int hp) {
+<span class="nc" id="L45">		this.hp = hp;</span>
+<span class="nc" id="L46">	}</span>
+
+	public int getMp() {
+<span class="nc" id="L49">		return this.mp;</span>
+	}
+
+	public void setMp(int mp) {
+<span class="nc" id="L53">		this.mp = mp;</span>
+<span class="nc" id="L54">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>BankTest (2019/06/18 9:35:52)</div></body></html>

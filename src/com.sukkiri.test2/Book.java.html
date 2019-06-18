@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Book.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BankTest (2019/06/18 9:35:52)</a> &gt; <a href="../../index.html" class="el_group">Test</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">com.sukkiri.test2</a> &gt; <span class="el_source">Book.java</span></div><h1>Book.java</h1><pre class="source lang-java linenums">/**
+ *
+ */
+package com.sukkiri.test2;
+
+import java.util.Date;
+
+/**
+ * @author user2
+ *
+ */
+<span class="nc" id="L12">public class Book implements Comparable&lt;Book&gt;, Cloneable {</span>
+	private String title;
+	private Date publishDate;
+	private String comment;
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L19" title="All 2 branches missed.">		if (obj == this) {</span>
+<span class="nc" id="L20">			return true;</span>
+		}
+<span class="nc bnc" id="L22" title="All 2 branches missed.">		if (obj == null) {</span>
+<span class="nc" id="L23">			return false;</span>
+		}
+<span class="nc bnc" id="L25" title="All 2 branches missed.">		if (!(obj instanceof Book)) {</span>
+<span class="nc" id="L26">			return false;</span>
+		}
+<span class="nc" id="L28">		Book o = (Book) obj;</span>
+<span class="nc bnc" id="L29" title="All 4 branches missed.">		if (!(o.getTitle().equals(this.title) &amp;&amp; o.getPublishDate().equals(this.publishDate))) {</span>
+<span class="nc" id="L30">			return false;</span>
+		}
+<span class="nc" id="L32">		return true;</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L37">		int result = 47;</span>
+<span class="nc" id="L38">		result += this.title.hashCode() + this.publishDate.hashCode() + this.comment.hashCode();</span>
+<span class="nc" id="L39">		return result;</span>
+	}
+
+	@Override
+	public int compareTo(Book obj) {
+		//		if (this.publishDate.getTime() &lt; obj.publishDate.getTime()) {
+		//			return -1;
+		//		} else if (this.publishDate.getTime() &gt; obj.publishDate.getTime()) {
+		//			return 1;
+		//		}
+		//		return 0;
+<span class="nc" id="L50">		return this.publishDate.compareTo(obj.publishDate);</span>
+	}
+
+	public Book clone() {
+<span class="nc" id="L54">		Book book = new Book();</span>
+<span class="nc" id="L55">		book.title = this.title;</span>
+<span class="nc" id="L56">		book.publishDate = (Date) this.publishDate.clone();</span>
+<span class="nc" id="L57">		book.comment = this.comment;</span>
+
+<span class="nc" id="L59">		return book;</span>
+	}
+
+	// getter/setter
+	public String getTitle() {
+<span class="nc" id="L64">		return this.title;</span>
+	}
+
+	public void setTitle(String title) {
+<span class="nc" id="L68">		this.title = title;</span>
+<span class="nc" id="L69">	}</span>
+
+	public Date getPublishDate() {
+<span class="nc" id="L72">		return this.publishDate;</span>
+	}
+
+	public void setPublishDate(Date publishDate) {
+<span class="nc" id="L76">		this.publishDate = publishDate;</span>
+<span class="nc" id="L77">	}</span>
+
+	public String getComment() {
+<span class="nc" id="L80">		return this.comment;</span>
+	}
+
+	public void setComment(String comment) {
+<span class="nc" id="L84">		this.comment = comment;</span>
+<span class="nc" id="L85">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>BankTest (2019/06/18 9:35:52)</div></body></html>

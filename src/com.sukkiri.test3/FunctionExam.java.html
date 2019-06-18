@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FunctionExam.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BankTest (2019/06/18 9:35:52)</a> &gt; <a href="../../index.html" class="el_group">Test</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">com.sukkiri.test3</a> &gt; <span class="el_source">FunctionExam.java</span></div><h1>FunctionExam.java</h1><pre class="source lang-java linenums">/**
+ *
+ */
+package com.sukkiri.test3;
+
+import java.util.function.IntBinaryOperator;
+
+/**
+ * @author user2
+ *
+ */
+<span class="nc" id="L12">public class FunctionExam {</span>
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		//subメソッドの処理を変数funcにいれる(関数のある参照先をいれるイメージ)
+		// IntBinaryOperator interface 二つのintオペラントに作用してint値の結果を生成する演算を表します。
+<span class="nc" id="L20">		IntBinaryOperator func = FunctionExam::sub;</span>
+<span class="nc" id="L21">		int a = func.applyAsInt(5, 3); // 二つのintオペラントに作用してint値の結果を生成(関数呼び出し)</span>
+<span class="nc" id="L22">		System.out.println(a);</span>
+
+<span class="nc" id="L24">		Myfunction func2 = FunctionExam::sub;</span>
+<span class="nc" id="L25">		a = func2.call(7, 6);</span>
+<span class="nc" id="L26">		System.out.println(a);</span>
+<span class="nc" id="L27">	}</span>
+
+	public static int sub(int a, int b) {
+<span class="nc" id="L30">		return a - b;</span>
+	}
+
+	// 格納用SAMインターフェース(java.utill.functionパッケージ内にない場合このように作成する)
+	public interface Myfunction {
+		public abstract int call(int x, int y);
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>BankTest (2019/06/18 9:35:52)</div></body></html>

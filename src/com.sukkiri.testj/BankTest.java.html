@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>BankTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BankTest (2019/06/18 9:35:52)</a> &gt; <a href="../../index.html" class="el_group">Test</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">com.sukkiri.testj</a> &gt; <span class="el_source">BankTest.java</span></div><h1>BankTest.java</h1><pre class="source lang-java linenums">/**
+ *
+ */
+package com.sukkiri.testj;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.sukkiri.test8.Bank;
+
+/**
+ * @author user2
+ *
+ */
+<span class="fc" id="L17">class BankTest {</span>
+	private Bank bank;
+
+	@BeforeEach
+	public void initialize() {
+<span class="fc" id="L22">		bank = new Bank();</span>
+
+<span class="fc" id="L24">	}</span>
+
+	@Test
+	void 銀行名三文字() throws Exception {
+		// 正常系
+<span class="fc" id="L29">		bank.setName(&quot;hao&quot;);</span>
+<span class="fc" id="L30">		assertEquals(bank.getName(), &quot;hao&quot;);</span>
+
+<span class="fc" id="L32">	}</span>
+
+	@Test
+	void 銀行名setNull時() throws Exception {
+		//null時
+<span class="fc" id="L37">		assertThrows(IllegalArgumentException.class, () -&gt; {</span>
+<span class="nc" id="L38">			bank.setName(null);</span>
+<span class="nc" id="L39">		});</span>
+<span class="fc" id="L40">	}</span>
+
+	@Test
+	void 銀行名error() throws Exception {
+		// 異常系
+<span class="fc" id="L45">		assertThrows(IllegalArgumentException.class, () -&gt; {</span>
+<span class="nc" id="L46">			bank.setName(&quot;異常&quot;);</span>
+<span class="nc" id="L47">		});</span>
+
+<span class="fc" id="L49">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>BankTest (2019/06/18 9:35:52)</div></body></html>
